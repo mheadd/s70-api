@@ -1,0 +1,16 @@
+{
+  "name": "s70-api",
+  "version": "0.0.1",
+  "description": "A data scraper and API for GSA scheudle 70 vendor data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mark Headd",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "express": "^4.14.0",
+    "request": "^2.79.0"
+  }
+}
