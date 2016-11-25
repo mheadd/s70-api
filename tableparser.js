@@ -24,7 +24,7 @@ module.exports = function($) {
                 var rowspan = $(col).attr('rowspan') || 1;
                 var colspan = $(col).attr('colspan') || 1;
                 if (textMode === true) {
-                  var content = $(col).text().trim()
+                  var content = $(col).text().replace(/[\r\n\t]+/g," ").trim();
                   if($(col).find('a').length) {
                     content += '|' + $(col).find('a').attr('href');
                   }
