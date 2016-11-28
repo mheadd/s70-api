@@ -4,7 +4,7 @@
   "description": "A data scraper and API for GSA scheudle 70 vendor data",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test" : "node_modules/.bin/mocha -u exports test/*"
   },
   "author": "Mark Headd",
   "license": "ISC",
@@ -12,5 +12,9 @@
     "cheerio": "^0.22.0",
     "express": "^4.14.0",
     "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "supertest": "^2.0.1"
   }
 }
