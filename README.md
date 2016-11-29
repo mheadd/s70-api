@@ -12,8 +12,9 @@ This API is built to conform to as many of the [API standards articulate here](h
 
 ## Usage
 
-[Scrape the data](https://github.com/mheadd/s70-api/tree/master/utils) and load it into a data store.
+* Clone this repo, and install dependencies: ```npm install```
+* [Scrape the data](https://github.com/mheadd/s70-api/tree/master/utils) and load it into a MySQL database.
+* Copy the sample config to ```config.js``` and add MySQL connection details.
+* Start the app: ```npm start```
 
-Populate the database with the scraped data.
-
-Fire up the API.
+## Endpoints
