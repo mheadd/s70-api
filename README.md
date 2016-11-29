@@ -18,3 +18,44 @@ This API is built to conform to as many of the [API standards articulate here](h
 * Start the app: ```npm start```
 
 ## Endpoints
+
+Get all contractors
+* URL: http://{host}/?limit=1&0ffset=5
+* Optional ```limit``` & ```offset``` parameters
+
+Get contractors by state
+* URL: http://{host}/state/NY?limit=1&0ffset=5
+* Optional ```limit``` & ```offset``` parameters
+
+Get contractors by City
+* URL: http://{host}/city/New York?limit=1&0ffset=5
+* Optional ```limit``` & ```offset``` parameters
+
+## Sample response
+
+```json
+{
+	"result": "success",
+	"data": [{
+		"Contractor_Name": "GOVSPHERE, INC.",
+		"Contractor_Details_URL": "http://www.gsaelibrary.gsa.gov/ElibMain/contractorInfo.do;jsessionid=45223235A079C3DB237FB375FB880575.prd2pweb?contractNumber=GS-35F-0593X&contractorName=GOVSPHERE%2C+INC.&executeQuery=YES",
+		"Contract_Number": "GS-35F-0593X",
+		"Phone": "315-897-7100",
+		"Contractor_TC_Price_List": "https://www.gsaadvantage.gov/ref_text/GS35F0593X/GS35F0593X_online.htm",
+		"View_Catalog": "http://www.gsaelibrary.gsa.gov/ElibMain/advRedirect.do?contract=GS-35F-0593X&sin=132+51&src=elib&app=cat",
+		"State_Local": 1,
+		"Small_Business": 1,
+		"Other_Than_Small_Business": 0,
+		"Women_Owned_Small_Business": 0,
+		"Economically_Disadvantaged_Women_Owned_Small_Business": 0,
+		"Woman_Owned_Business": 0,
+		"Service_Disabled_Veteran_Owned_Small_Business": 0,
+		"Veteran_Owned_Small_Business": 0,
+		"SBA_Certified_Small_Disadvantaged_Business": 0,
+		"SBA_Certified_8a_Firm": 0,
+		"SBA_Certified_HUBZone_Firm": 1,
+		"State": "NY",
+		"City": "SYRACUSE"
+	}]
+}
+```
