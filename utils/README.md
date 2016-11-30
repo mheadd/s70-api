@@ -17,8 +17,8 @@ This is admittedly ugly and inefficient, but it works. Suggestions for improveme
 Scrape the data from the GSA eLibrary site using the ```scraper.js``` file, like so (note - assumes that [csvkit](https://csvkit.readthedocs.io/en/0.9.1/) is installed):
 
 ```bash
-~$ echo '"Contractor_Name","Contractor_Details_URL","State_Local_Auth","Contract_Number","Phone","Location","Socio_Economic_Indicators","Contractor_TC_Price_List","View_Catalog"' > data.csv
-~$ node utils/scraper.js | sed 's/"|/"/g' | sed 's/|/","/g' | csvcut -c 1-7,9,11 >> data.csv
+~$ echo '"Contractor_Name","Contractor_Details_URL","State_Local_Auth","Contract_Number","Phone","Location","Socio_Economic_Indicators","Contractor_TC_Price_List","View_Catalog"' > data/data.csv
+~$ node utils/scraper.js | sed 's/"|/"/g' | sed 's/|/","/g' | csvcut -c 1-7,9,11 >> data/data.csv
 ```
 
 Create a new MySQL database and user:
