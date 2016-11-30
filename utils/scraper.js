@@ -29,7 +29,7 @@ request(endpoint, function (error, response, body) {
       // Emptry array to hold vendor details.
       let vendor = [];
       for(let j=0; j<fieldCount; j++) {
-        vendor.push('"' + vendorData[j][i] + '"')
+        vendor.push('"' + vendorData[j][i] + '"');
       }
 
       // Output comma delimited row.
