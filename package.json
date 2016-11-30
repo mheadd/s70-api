@@ -11,8 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^0.22.0",
-    "cors": "^2.8.1",
     "express": "^4.14.0",
+    "express-csv": "^0.6.0",
     "mysql": "^2.12.0",
     "request": "^2.79.0"
   },
