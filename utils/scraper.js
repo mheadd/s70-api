@@ -9,9 +9,12 @@ const cheerio = require('cheerio');
 const cheerioTableparser = require('./tableparser');
 
 // URL to scrape.
-let endpoint = 'http://www.gsaelibrary.gsa.gov/ElibMain/sinDetails.do?executeQuery=YES&scheduleNumber=70&flag=&filter=&specialItemNumber=132+51';
+let endpoint_base = 'http://www.gsaelibrary.gsa.gov/ElibMain/sinDetails.do?executeQuery=YES&scheduleNumber=70&flag=&filter=&specialItemNumber=';
 
-request(endpoint, function (error, response, body) {
+// Category of contractor (default is 'Information Technology Professional Services')
+let category = process.argv[2] || '132+51';
+
+request(endpoint_base + category, function (error, response, body) {
   if (!error && response.statusCode == 200) {
     $=cheerio.load(body);
     cheerioTableparser($);

@@ -4,7 +4,7 @@ An API for getting data on GSA Schedule 70 vendors that are authorized to work w
 
 ## Rationale
 
-State and local governments can purchase IT services off of the GSA Schedule 70, but locating a contractor that meets specific requirements is not easy using the existing [GSA eLibrary website](http://www.gsaelibrary.gsa.gov/ElibMain/home.do). This API makes it easy to search for contractors by state or city, and supports the development of a range of different client applications that can be used by state and local officials to more easily identify Schedule 70 contractors.
+State and local governments can purchase IT services off of the GSA Schedule 70, but locating a contractor that meets specific requirements is not easy using the existing [GSA eLibrary website](http://www.gsaelibrary.gsa.gov/ElibMain/home.do). This API makes it easy to search for contractors by state or city; more clearly lists contractor socio-economic indicators, and; supports the development of a range of different client applications that can be used by state and local officials to quickly identify Schedule 70 contractors authorized to work with state and local governments.
 
 ## Design
 
