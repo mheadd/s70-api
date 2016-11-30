@@ -10,8 +10,6 @@ The GSA eLibrary site does allow for [data to be downloaded](http://www.gsaelibr
 
 For now, scraping the data from the eLibrary site gets around these limitations, and also provides useful data elements that are not available in the downloadable version (even if it we're working properly), like the URL to link to a specific contractor's profile information.
 
-Note - the scraper file detailed below currently only scrapes contractor data for a specific 
-
 ## Usage
 
 This is admittedly ugly and inefficient, but it works. Suggestions for improvements welcomed.
