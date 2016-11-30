@@ -1,5 +1,5 @@
 -- ********************
--- Script to format columns for GSA eLibrary data
+-- Script to creat / format columns for GSA eLibrary data.
 -- ********************
 
 use schedule70;
@@ -8,7 +8,6 @@ use schedule70;
 ALTER TABLE data add State_Local BOOLEAN;
 UPDATE data SET State_Local = 0;
 UPDATE data SET State_Local = 1 WHERE State_Local_Auth IS NOT NULL;
-ALTER TABLE data DROP COLUMN State_Local_Auth;
 
 -- Break out socio-economic indicator classification into separate columns.
 ALTER TABLE data add Small_Business BOOLEAN;
@@ -51,8 +50,6 @@ ALTER TABLE data add SBA_Certified_HUBZone_Firm BOOLEAN;
 UPDATE data SET SBA_Certified_HUBZone_Firm = 0;
 UPDATE data SET SBA_Certified_HUBZone_Firm = 1 WHERE LOCATE('h', Socio_Economic_Indicators) > 0;
 
-ALTER TABLE data DROP COLUMN Socio_Economic_Indicators;
-
 -- Add base URL to fields with URL fragments.
 ALTER TABLE data MODIFY Contractor_Details_URL VARCHAR(250);
 UPDATE data SET Contractor_Details_URL = CONCAT('http://www.gsaelibrary.gsa.gov/ElibMain/', Contractor_Details_URL);
@@ -67,4 +64,12 @@ UPDATE data SET State = SUBSTRING(Location, LOCATE(',', Location)+1, 2);
 ALTER TABLE data ADD City VARCHAR(60);
 UPDATE data SET City = SUBSTRING(Location, 1, LOCATE(',', Location)-2);
 
+-- Clean up superfluous columns.
+ALTER TABLE data DROP COLUMN State_Local_Auth;
 ALTER TABLE data DROP COLUMN Location;
+ALTER TABLE data DROP COLUMN Socio_Economic_Indicators;
+
+-- Add primary key and indexes.
+ALTER TABLE data ADD PRIMARY KEY (Contract_Number);
+ALTER TABLE data ADD INDEX (State);
+ALTER TABLE data ADD INDEX (City);
