@@ -26,19 +26,19 @@ This API is built to conform to as many of the [API standards articulate here](h
 
 ## Endpoints
 
-Get all contractors
+Get contractors list
 * URL: https://{host}/?limit=1&0ffset=5
 * Optional ```limit``` & ```offset``` parameters
 
-Get contractors by State
+Get contractors list by State
 * URL: https://{host}/state/NY?limit=1&0ffset=5
 * Optional ```limit``` & ```offset``` parameters
 
-Get contractors by City
+Get contractors list by City
 * URL: https://{host}/city/Syracuse?limit=2
 * Optional ```limit``` & ```offset``` parameters
 
-Download all data
+Download all contractors data
 * https://{host}/download
 * Downloads all data as a csv file
 

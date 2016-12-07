@@ -18,7 +18,7 @@ Scrape the data from the GSA eLibrary site using the ```scraper.js``` file, like
 
 ```bash
 ~$ echo '"Contractor_Name","Contractor_Details_URL","State_Local_Auth","Contract_Number","Phone","Location","Socio_Economic_Indicators","Contractor_TC_Price_List","View_Catalog"' > data/data.csv
-~$ node utils/scraper.js | sed 's/"|/"/g' | sed 's/|/","/g' | csvcut -c 1-7,9,11 >> data/data.csv
+~$ node utils/scraper.js 132+52 | sed 's/"|/"/g' | sed 's/|/","/g' | csvcut -c 1-7,9,11 >> data/data.csv
 ```
 
 Create a new MySQL database and user:
