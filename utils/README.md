@@ -17,7 +17,7 @@ This is admittedly ugly and inefficient, but it works. Suggestions for improveme
 Scrape the data from the GSA eLibrary site using the ```scraper.js``` file, like so (note - assumes that [csvkit](https://csvkit.readthedocs.io/en/0.9.1/) is installed):
 
 ```bash
-~$ echo '"Category",Contractor_Name","Contractor_Details_URL","State_Local_Auth","Contract_Number","Phone","Location","Socio_Economic_Indicators","Contractor_TC_Price_List","View_Catalog"' > data/data.csv
+~$ echo '"Category","Contractor_Name","Contractor_Details_URL","State_Local_Auth","Contract_Number","Phone","Location","Socio_Economic_Indicators","Contractor_TC_Price_List","View_Catalog"' > data/data.csv
 ~$ node utils/scraper.js 132+52 | sed 's/"|/"/g' | sed 's/|/","/g' | csvcut -c 1-8,10,12 >> data/data.csv
 ```
 
@@ -37,7 +37,7 @@ Now, insert the data using the ```csvsql``` utility:
 ~$ csvsql --db mysql://user:password@localhost/schedule70 --insert data/data.csv
 ```
 
-Finally, run the SQL script in this directory thusly.
+Finally, run the SQL script in the utils directory thusly.
 
 ```bash
 ~$ mysql -u <user> -p <password> < utils/format-columns.sql
