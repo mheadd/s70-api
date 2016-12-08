@@ -40,20 +40,20 @@ module.exports = function($) {
                 for (x = 0; x < rowspan; x++) {
                     for (y = 0; y < colspan; y++) {
                         if (columns[curr_y + y] === undefined) {
-                            columns[curr_y + y] = []
+                            columns[curr_y + y] = [];
                         }
 
                         while (columns[curr_y + y][curr_x + x] !== undefined) {
-                            curr_y += 1
+                            curr_y += 1;
                             if (columns[curr_y + y] === undefined) {
-                                columns[curr_y + y] = []
+                                columns[curr_y + y] = [];
                             }
                         }
 
                         if ((x === 0 || dupRows) && (y === 0 || dupCols)) {
-                            columns[curr_y + y][curr_x + x] = content
+                            columns[curr_y + y][curr_x + x] = content;
                         } else {
-                            columns[curr_y + y][curr_x + x] = ""
+                            columns[curr_y + y][curr_x + x] = "";
                         }
                     }
                 }
@@ -64,4 +64,4 @@ module.exports = function($) {
 
         return columns;
     };
-}
+};

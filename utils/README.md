@@ -17,9 +17,11 @@ This is admittedly ugly and inefficient, but it works. Suggestions for improveme
 Scrape the data from the GSA eLibrary site using the ```scraper.js``` file, like so (note - assumes that [csvkit](https://csvkit.readthedocs.io/en/0.9.1/) is installed):
 
 ```bash
-~$ echo '"Contractor_Name","Contractor_Details_URL","State_Local_Auth","Contract_Number","Phone","Location","Socio_Economic_Indicators","Contractor_TC_Price_List","View_Catalog"' > data/data.csv
-~$ node utils/scraper.js 132+52 | sed 's/"|/"/g' | sed 's/|/","/g' | csvcut -c 1-7,9,11 >> data/data.csv
+~$ echo '"Category",Contractor_Name","Contractor_Details_URL","State_Local_Auth","Contract_Number","Phone","Location","Socio_Economic_Indicators","Contractor_TC_Price_List","View_Catalog"' > data/data.csv
+~$ node utils/scraper.js 132+52 | sed 's/"|/"/g' | sed 's/|/","/g' | csvcut -c 1-8,10,12 >> data/data.csv
 ```
+
+Rerun the scraper command for each [category of service](http://www.gsaelibrary.gsa.gov/ElibMain/searchResults.do?searchText=SUBJECT+TO+COOPERATIVE+PURCHASING&searchType=exactWords&x=11&y=4) that you want to scrape data for, modifying the category parameter accordingly (in the above example ```132+52``` is the category parameter passed to the Node script).
 
 Create a new MySQL database and user:
 

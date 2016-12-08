@@ -28,15 +28,15 @@ This API is built to conform to as many of the [API standards articulate here](h
 
 Get contractors list
 * URL: https://{host}/?limit=1&0ffset=5
-* Optional ```limit``` & ```offset``` parameters
+* Optional ```limit``` & ```offset``` & ```format``` parameters
 
 Get contractors list by State
 * URL: https://{host}/state/NY?limit=1&0ffset=5
-* Optional ```limit``` & ```offset``` parameters
+* Optional ```limit``` & ```offset``` & ```format```  parameters
 
 Get contractors list by City
 * URL: https://{host}/city/Syracuse?limit=2
-* Optional ```limit``` & ```offset``` parameters
+* Optional ```limit``` & ```offset``` & ```format```  parameters
 
 Download all contractors data
 * https://{host}/download
@@ -47,7 +47,9 @@ Download all contractors data
 ```json
 {
 	"result": "success",
-	"data": [{
+	"data": [
+		{
+		"Category": "132 51",
 		"Contractor_Name": "GOVSPHERE, INC.",
 		"Contractor_Details_URL": "http://www.gsaelibrary.gsa.gov/ElibMain/contractorInfo.do;jsessionid=45223235A079C3DB237FB375FB880575.prd2pweb?contractNumber=GS-35F-0593X&contractorName=GOVSPHERE%2C+INC.&executeQuery=YES",
 		"Contract_Number": "GS-35F-0593X",
@@ -67,7 +69,9 @@ Download all contractors data
 		"SBA_Certified_HUBZone_Firm": 1,
 		"State": "NY",
 		"City": "SYRACUSE"
-	}, {
+	},
+	{
+		"Category": "132 51",
 		"Contractor_Name": "PROGRESSIVE EXPERT CONSULTING, INC.",
 		"Contractor_Details_URL": "http://www.gsaelibrary.gsa.gov/ElibMain/contractorInfo.do;jsessionid=45223235A079C3DB237FB375FB880575.prd2pweb?contractNumber=GS-35F-0375V&contractorName=PROGRESSIVE+EXPERT+CONSULTING%2C+INC.&executeQuery=YES",
 		"Contract_Number": "GS-35F-0375V",
@@ -87,13 +91,15 @@ Download all contractors data
 		"SBA_Certified_HUBZone_Firm": 0,
 		"State": "NY",
 		"City": "SYRACUSE"
-	}]
+	}
+]
 }
 ```
 ## Field listing
 
 | Name | Type | Description |
 |---|---|---|
+| Category | String | The category number for the service provided by the contractor |
 | Contractor_Name | String |  The name of the contractor |
 | Contractor_Details_URL | String | URL to the contractor profile on GSA eLibrary  |
 | Contract_Number | String | The number of the contract through which the contractor provides service |

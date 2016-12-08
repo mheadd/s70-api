@@ -20,9 +20,6 @@ request(endpoint_base + category, function (error, response, body) {
     cheerioTableparser($);
     let vendorData = $("#myTable").parsetable(false, false, true);
 
-    // Emptry array to hold vendor collection.
-    let vendors = [];
-
     // Counter variable.
     let recordCount = vendorData[0].length;
     let fieldCount = vendorData.length;
@@ -30,7 +27,7 @@ request(endpoint_base + category, function (error, response, body) {
     // Loop through nested arrays.
     for(let i=1; i<recordCount; i++) {
       // Emptry array to hold vendor details.
-      let vendor = [];
+      let vendor = ['"' + category + '"'];
       for(let j=0; j<fieldCount; j++) {
         vendor.push('"' + vendorData[j][i] + '"');
       }

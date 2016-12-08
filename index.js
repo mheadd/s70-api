@@ -10,14 +10,15 @@ connection.connect();
 // Set up Express app.
 let port = config.port  ;
 let app = express();
-app.listen(port);
+if(!module.parent){
+    app.listen(3000);
+}
 
 // Get limit and offset params for pagination.
 app.use(function(req, res, next) {
   req.query_limit = req.query.limit || 25;
   req.query_offset = req.query.offset || 0;
-  // Set default response format.
-  req.response_type = 'JSON';
+  req.response_type = req.query.format || 'JSON';
   next();
 });
 
@@ -60,7 +61,7 @@ app.use(function(req, res) {
       res.json({ result: "error", details: error });
     }
     else {
-      if(req.response_type == 'CSV') {
+      if(req.response_type.toUpperCase() == 'CSV') {
         res.csv(rows);
       }
       else {

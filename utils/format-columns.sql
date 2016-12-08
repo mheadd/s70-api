@@ -9,6 +9,9 @@ ALTER TABLE data add State_Local BOOLEAN;
 UPDATE data SET State_Local = 0;
 UPDATE data SET State_Local = 1 WHERE State_Local_Auth IS NOT NULL;
 
+-- Clearn up value in Category column
+UPDATE data SET Category = REPLACE(Category,'+',' ');
+
 -- Break out socio-economic indicator classification into separate columns.
 ALTER TABLE data add Small_Business BOOLEAN;
 UPDATE data SET Small_Business = 0;
@@ -70,6 +73,6 @@ ALTER TABLE data DROP COLUMN Location;
 ALTER TABLE data DROP COLUMN Socio_Economic_Indicators;
 
 -- Add primary key and indexes.
-ALTER TABLE data ADD PRIMARY KEY (Contract_Number);
+ALTER TABLE data ADD PRIMARY KEY (Category,Contract_Number);
 ALTER TABLE data ADD INDEX (State);
 ALTER TABLE data ADD INDEX (City);
