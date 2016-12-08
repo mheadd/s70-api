@@ -47,6 +47,7 @@ Download all contractors data
 ```json
 {
 	"result": "success",
+	"count": 2,
 	"data": [
 		{
 		"Category": "132 51",
