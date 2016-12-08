@@ -7,7 +7,7 @@ exports.config = {
   },
   queries: {
     download: "SELECT * FROM data",
-    default: "SELECT * FROM data LIMIT %offset%,%limit%",
+    all: "SELECT * FROM data LIMIT %offset%,%limit%",
     state: "SELECT * FROM data WHERE State = '%state%' LIMIT %offset%,%limit%",
     city: "SELECT * FROM data WHERE City = '%city%' LIMIT %offset%,%limit%",
     category: "SELECT * FROM data WHERE Category = '%category%' LIMIT %offset%,%limit%"

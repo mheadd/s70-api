@@ -23,38 +23,47 @@ app.use(function(req, res, next) {
 });
 
 // Default route.
-app.get('/', function(req, res, next) {
-  req.query_string = config.tools.buildQuery(config.queries.default, req.query_limit, req.query_offset);
+app.get('/', function all(req, res, next) {
+  req.query_type = arguments.callee.name;
   next();
 });
 
 // Get contractors by state.
-app.get('/state/:state', function(req, res, next) {
-  req.query_string = config.tools.buildQuery(config.queries.state, req.query_limit, req.query_offset, 'state', req.params.state);
+app.get('/state/:state', function state(req, res, next) {
+  req.query_type = arguments.callee.name;
+  req.search_string = req.params.state;
   next();
 });
 
 // Get contractors by city.
-app.get('/city/:city', function(req, res, next) {
-  req.query_string = config.tools.buildQuery(config.queries.city, req.query_limit, req.query_offset, 'city', req.params.city);
+app.get('/city/:city', function city(req, res, next) {
+  req.query_type = arguments.callee.name;
+  req.search_string = req.params.city;
   next();
 });
 
-// Get contractos by category.
-app.get('/category/:category', function(req, res, next) {
-  req.query_string = config.tools.buildQuery(config.queries.category, req.query_limit, req.query_offset, 'category', req.params.category);
+// Get contractors by category.
+app.get('/category/:category', function category(req, res, next) {
+  req.query_type = arguments.callee.name;
+  req.search_string = req.params.category;
   next();
 });
 
-app.get('/download', function(req, res, next) {
-  req.query_string = config.queries.download;
+// Download all data.
+app.get('/download', function download(req, res, next) {
+  req.query_type = arguments.callee.name;
   req.response_type = 'CSV';
   next();
 });
 
 // Render the result for the client.
-app.use(function(req, res) {
-  connection.query(req.query_string, function(error, rows, fields) {
+app.use(function(req, res, next) {
+
+  // Assemble query string.
+  let query_string = config.tools.buildQuery(config.queries[req.query_type], req.query_limit, req.query_offset, req.query_type, req.search_string);
+
+  // Execute query and render response.
+  connection.query(query_string, function(error, rows, fields) {
     if(error) {
       res.json({ result: "error", details: error });
     }
@@ -68,6 +77,11 @@ app.use(function(req, res) {
       }
     }
   });
+});
+
+// Handle errors.
+app.use(function(err, req, res, next) {
+  res.status(500).send('An error occured');
 });
 
 module.exports = app;
