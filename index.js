@@ -24,27 +24,25 @@ app.use(function(req, res, next) {
 
 // Default route.
 app.get('/', function(req, res, next) {
-  req.query_string = config.queries.default
-    .replace('%offset%', req.query_offset)
-    .replace('%limit%', req.query_limit);
+  req.query_string = config.tools.buildQuery(config.queries.default, req.query_limit, req.query_offset);
   next();
 });
 
 // Get contractors by state.
 app.get('/state/:state', function(req, res, next) {
-  req.query_string = config.queries.state
-    .replace('%offset%', req.query_offset)
-    .replace('%limit%', req.query_limit)
-    .replace('%state%', req.params.state.toUpperCase());
+  req.query_string = config.tools.buildQuery(config.queries.state, req.query_limit, req.query_offset, 'state', req.params.state);
   next();
 });
 
 // Get contractors by city.
 app.get('/city/:city', function(req, res, next) {
-  req.query_string = config.queries.city
-    .replace('%offset%', req.query_offset)
-    .replace('%limit%', req.query_limit)
-    .replace('%city%', decodeURIComponent(req.params.city.toUpperCase()));
+  req.query_string = config.tools.buildQuery(config.queries.city, req.query_limit, req.query_offset, 'city', req.params.city);
+  next();
+});
+
+// Get contractos by category.
+app.get('/category/:category', function(req, res, next) {
+  req.query_string = config.tools.buildQuery(config.queries.category, req.query_limit, req.query_offset, 'category', req.params.category);
   next();
 });
 
@@ -66,7 +64,7 @@ app.use(function(req, res) {
       }
       else {
         res.set('Access-Control-Allow-Origin', '*');
-        res.json({ result: "success", data: rows });
+        res.json({ result: "success", count: rows.length , data: rows });
       }
     }
   });

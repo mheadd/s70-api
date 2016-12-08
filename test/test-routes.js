@@ -38,6 +38,18 @@ exports.city_search_route_should_respond_with_json = function(done) {
   });
 };
 
+exports.catogory_search_route_should_respond_with_json = function(done) {
+  supertest(app)
+  .get('/category/132%2051')
+  .expect(200)
+  .end(function(err, res) {
+    assert.ok(!err);
+    assert.ok(typeof(res.body) === 'object');
+    assert.ok(Object.keys(res.body).length > 0);
+    return done();
+  });
+};
+
 exports.download_route_should_respond_with_csv_file = function(done) {
   supertest(app)
   .get('/download')
