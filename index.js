@@ -16,8 +16,8 @@ if(!module.parent){
 
 // Get limit and offset params for pagination.
 app.use(function(req, res, next) {
-  req.query_limit = req.query.limit || 25;
-  req.query_offset = req.query.offset || 0;
+  req.query_limit = parseInt(req.query.limit) || 25;
+  req.query_offset = parseInt(req.query.offset) || 0;
   req.response_type = req.query.format || 'JSON';
   next();
 });
@@ -31,14 +31,14 @@ app.get('/', function all(req, res, next) {
 // Get contractors by state.
 app.get('/state/:state', function state(req, res, next) {
   req.query_type = arguments.callee.name;
-  req.search_string = req.params.state;
+  req.search_string = req.params.state.toUpperCase();
   next();
 });
 
 // Get contractors by city.
 app.get('/city/:city', function city(req, res, next) {
   req.query_type = arguments.callee.name;
-  req.search_string = req.params.city;
+  req.search_string = req.params.city.toUpperCase();
   next();
 });
 
@@ -59,11 +59,14 @@ app.get('/download', function download(req, res, next) {
 // Render the result for the client.
 app.use(function(req, res, next) {
 
-  // Assemble query string.
-  let query_string = config.tools.buildQuery(config.queries[req.query_type], req.query_limit, req.query_offset, req.query_type, req.search_string);
+  // Assemble replacment vaues for SQL query templates.
+  let replaceValues = [req.query_offset, req.query_limit];
+  if(req.search_string) {
+    replaceValues.unshift(req.search_string);
+  }
 
   // Execute query and render response.
-  connection.query(query_string, function(error, rows, fields) {
+  connection.query(config.queries[req.query_type], replaceValues, function(error, rows, fields) {
     if(error) {
       res.json({ result: "error", details: error });
     }

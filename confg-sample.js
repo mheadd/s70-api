@@ -7,25 +7,10 @@ exports.config = {
   },
   queries: {
     download: "SELECT * FROM data",
-    all: "SELECT * FROM data LIMIT %offset%,%limit%",
-    state: "SELECT * FROM data WHERE State = '%state%' LIMIT %offset%,%limit%",
-    city: "SELECT * FROM data WHERE City = '%city%' LIMIT %offset%,%limit%",
-    category: "SELECT * FROM data WHERE Category = '%category%' LIMIT %offset%,%limit%"
+    all:      "SELECT * FROM data LIMIT ?,?",
+    state:    "SELECT * FROM data WHERE State = ? LIMIT ?,?",
+    city:     "SELECT * FROM data WHERE City = ? LIMIT ?,?",
+    category: "SELECT * FROM data WHERE Category = ? LIMIT ?,?"
   },
   port: 3000,
-  tools: {
-    buildQuery: function buildQuery(query, limit, offset, replaceString, replaceWith) {
-      return query.replace('%offset%', offset)
-      .replace('%limit%', limit)
-      .replace('%' + replaceString + '%', formatParamter(replaceWith));
-    }
-  }
 };
-
-// Utility functions.
-function formatParamter(parameter) {
-  if(typeof(parameter) == 'string') {
-    return decodeURIComponent(parameter.toUpperCase());
-  }
-  return;
-}
