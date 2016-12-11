@@ -29,21 +29,25 @@ mysql> GRANT SELECT ON schedule70 . * TO 'user'@'localhost';
 * Copy the sample config to ```config.js``` and add MySQL connection details .
 * Start the app: ```npm start```
 
-## Endpoints
+## API Methods
 
-Get contractors list
+### Get contractors list
 * URL: https://{host}/?limit=1&0ffset=5
 * Optional ```limit``` & ```offset``` & ```format``` parameters
 
-Get contractors list by State
+### Get contractors list by State
 * URL: https://{host}/state/NY?limit=1&0ffset=5
 * Optional ```limit``` & ```offset``` & ```format```  parameters
 
-Get contractors list by City
+### Get contractors list by City
 * URL: https://{host}/city/Syracuse?limit=2
 * Optional ```limit``` & ```offset``` & ```format```  parameters
 
-Download all contractors data
+### Get contractors list by Category
+* URL: https://{host}/category/132%2050?limit=5&offset=2&format=csv
+* Optional ```limit``` & ```offset``` & ```format```  parameters
+
+### Download all contractors data
 * https://{host}/download
 * Downloads all data as a csv file
 
