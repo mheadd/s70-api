@@ -8,7 +8,6 @@ exports.default_route_should_respond_with_json = (done) => {
   .expect(200)
   .end(function(err, res) {
     assert.ok(!err);
-    assert.ok(typeof(res.body) === 'object');
     assert.ok(Object.keys(res.body).length > 0);
     return done();
   });
@@ -43,6 +42,7 @@ exports.state_search_route_should_use_pagination_params = (done) => {
   .expect(200)
   .end(function(err, res) {
     assert.ok(!err);
+    assert.ok(typeof(res.body) === 'object');
     assert.ok(res.body.data.length === 10);
     return done();
   });
@@ -66,6 +66,7 @@ exports.city_search_route_should_use_pagination_params = (done) => {
   .expect(200)
   .end(function(err, res) {
     assert.ok(!err);
+    assert.ok(typeof(res.body) === 'object');
     assert.ok(res.body.data.length === 3);
     return done();
   });
@@ -89,6 +90,7 @@ exports.catogory_search_route_should_use_pagination_params = (done) => {
   .expect(200)
   .end(function(err, res) {
     assert.ok(!err);
+    assert.ok(typeof(res.body) === 'object');
     assert.ok(res.body.data.length === 20);
     return done();
   });
@@ -105,3 +107,16 @@ exports.download_route_should_respond_with_csv_file = (done) => {
     return done();
   });
 };
+
+exports.invalid_routes_should_return_error = (done) => {
+  supertest(app)
+  .get('/fake')
+  .expect(400)
+  .end(function(err, res) {
+    assert.ok(err);
+    assert.ok(typeof(res.body) === 'object');
+    assert.ok(res.body.result == 'error');
+    return done();
+  });
+  return done();
+}

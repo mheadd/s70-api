@@ -59,6 +59,12 @@ app.get('/download', (req, res, next) => {
 // Render the result for the client.
 app.use((req, res, next) => {
 
+  // Handle invalid routes.
+  if(!req.query_string) {
+    res.status(400).json({ result: "error", details: "Invalid route" });
+    return;
+  }
+
   // Assemble replacment vaues for SQL query templates.
   let replaceValues = [req.query_offset, req.query_limit];
   if(req.search_string) {
@@ -68,7 +74,7 @@ app.use((req, res, next) => {
   // Execute query and render response.
   connection.query(req.query_string, replaceValues, (error, rows, fields) => {
     if(error) {
-      res.json({ result: "error", details: error });
+      res.status(500).json({ result: "error", details: error });
     }
     else {
       if(req.response_type.toUpperCase() == 'CSV') {
@@ -84,7 +90,8 @@ app.use((req, res, next) => {
 
 // Handle errors.
 app.use((err, req, res, next) => {
-  res.status(500).send('An error occured');
+  let msg = err.message || "An error occured";
+  res.status(500).json({ result: "error", details: msg });
 });
 
 module.exports = app;
