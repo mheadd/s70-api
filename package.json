@@ -1,7 +1,7 @@
 {
   "name": "s70-api",
   "version": "0.0.5",
-  "description": "A data scraper and API for GSA scheudle 70 vendor data",
+  "description": "An API for GSA scheudle 70 vendor data",
   "main": "index.js",
   "scripts": {
     "test": "node_modules/.bin/mocha -u exports test/*",
@@ -10,11 +10,9 @@
   "author": "Mark Headd",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^0.22.0",
     "express": "^4.14.0",
     "express-csv": "^0.6.0",
-    "mysql": "^2.12.0",
-    "request": "^2.79.0"
+    "mysql": "^2.12.0"
   },
   "devDependencies": {
     "mocha": "^3.2.0",

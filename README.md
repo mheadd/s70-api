@@ -20,7 +20,7 @@ This API is built to conform to as many of the [API standards articulate here](h
 ## Usage
 
 * Clone this repo, and install dependencies: ```npm install```
-* [Scrape the data](https://github.com/mheadd/s70-api/tree/master/utils) and load it into a MySQL database.
+* [Scrape the data](https://github.com/mheadd/s70-api-scraper)
 * Create a database user:
 ```sql
 mysql> CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
