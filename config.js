@@ -1,9 +1,9 @@
 exports.config = {
   mysql: {
-    host: '',
-    user: '',
-    password: '',
-    database: ''
+    host: process.env.DBHOST,
+    user: process.env.DBUSER,
+    password: process.env.DBPASS,
+    database: process.env.DATABASE
   },
   queries: {
     download: "SELECT * FROM data",

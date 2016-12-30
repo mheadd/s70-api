@@ -26,8 +26,7 @@ This API is built to conform to as many of the [API standards articulate here](h
 mysql> CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
 mysql> GRANT SELECT ON schedule70 . * TO 'user'@'localhost';
 ```
-* Copy the sample config to ```config.js``` and add MySQL connection details .
-* Start the app: ```npm start```
+* Start the app: ```DBHOST=localhost DBUSER=user DBPASS=password DATABASE=schedule70 npm start```
 
 ## API Methods
 

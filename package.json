@@ -4,8 +4,8 @@
   "description": "An API for GSA scheudle 70 vendor data",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha -u exports test/*",
-    "start": "nodemon index.js"
+    "test": "DBHOST=${DBHOST} DBUSER=${DBUSER} DBPASS=${DBPASS} DATABASE=${DATABASE} node_modules/.bin/mocha -u exports test/*",
+    "start": "DBHOST=${DBHOST} DBUSER=${DBUSER} DBPASS=${DBPASS} DATABASE=${DATABASE} nodemon index.js"
   },
   "author": "Mark Headd",
   "license": "ISC",
