@@ -11,7 +11,7 @@ connection.connect();
 let port = config.port  ;
 let app = express();
 if(!module.parent){
-    app.listen(3000);
+    app.listen(config.port);
 }
 
 // Get limit and offset params for pagination.

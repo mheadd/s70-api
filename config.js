@@ -12,5 +12,5 @@ exports.config = {
     city:     "SELECT * FROM data WHERE City = ? LIMIT ?,?",
     category: "SELECT * FROM data WHERE Category = ? LIMIT ?,?"
   },
-  port: 3000,
+  port: process.env.port || 3000,
 };
