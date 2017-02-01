@@ -8,7 +8,6 @@ let connection = mysql.createConnection(config.mysql);
 connection.connect();
 
 // Set up Express app.
-let port = config.port  ;
 let app = express();
 if(!module.parent){
     app.listen(config.port);
